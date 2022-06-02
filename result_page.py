@@ -18,7 +18,7 @@ browser.get("https://results.vtu.ac.in/FMEcbcs22/resultpage.php")
 
 testbox = browser.find_element_by_xpath("/html/body/div[2]/div[1]/div[2]/div/div[2]/form/div/div[2]/div[1]/div/input")
 captchabox = browser.find_element_by_xpath("/html/body/div[2]/div[1]/div[2]/div/div[2]/form/div/div[2]/div[2]/div[1]/input")
-
+submitclick = browser.find_element_by_xpath("/html/body/div[2]/div[1]/div[2]/div/div[2]/form/div/div[2]/div[3]/div[1]/input")
 
 
 #start with the image capta recognition procedure
@@ -51,3 +51,5 @@ print(captcha)
 time.sleep(2)
 testbox.send_keys("1AM18CS092")
 captchabox.send_keys(captcha) 
+
+submitclick.click()
