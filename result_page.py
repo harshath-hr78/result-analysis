@@ -1,6 +1,8 @@
 from distutils.log import error
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
+import openpyxl
+from openpyxl import load_workbook,cell
 import time
 import os
 import pyautogui
@@ -20,7 +22,7 @@ option.add_experimental_option("detach",True)
 #add your chrome driver installation path
 browser = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\chromedriver.exe', options=option)
 
-def fillLoginpage():
+def fillLoginpage(usn):
 
     browser.get("https://results.vtu.ac.in/FMEcbcs22/resultpage.php")
 
@@ -57,21 +59,20 @@ def fillLoginpage():
     print("Captcha printing " +captcha)
     print(len(captcha)-1)
     if(len(captcha)-1 != 6 ):
-        fillLoginpage()
+        fillLoginpage(usn)
 
     #finally input the result pages with required info.
     time.sleep(1)
     try:
-        testbox.send_keys("1AM18CS077")
+        testbox.send_keys(usn)
         captchabox.send_keys(captcha) 
     except:
         error
     try:
         print(browser.current_url)
     except:
-        fillLoginpage()
+        fillLoginpage(usn)
     
-    #copy the full XPATH for the required cell and add the below code to get the data
     sub_codes = ["18ME751", "18CS71", "18CS72","18CS744","18CS734","18CSL76","18CSP77"]
     rows = []
 
@@ -91,12 +92,38 @@ def fillLoginpage():
         rows.append(present_row_data)
     
     final_result_data = pd.DataFrame(rows)                              #import pandas as pd
-    final_result_data.to_excel('vtu_result.xlsx',index=False)
-        
+    final_result_data.to_excel(r'vtu_result.xlsx',index=False)
+    
+    
+    time.sleep(10)
+    browser.quit()      # test
+    return              #test
+    
 
-    time.sleep(100)
 
-fillLoginpage()
+filepath=r"C:\Users\harsh\Desktop\result_analysis\pics\student_marks_list.xlsx"    #excel path
+wb=load_workbook(filepath)                                                         # load into wb
+sheet=wb.active                                                                    # active workbook
+
+for i in range(3,sheet.max_column):                                                # according to excel, row 1 starts at 3 and column 1 is usn.
+    cell_obj = sheet.cell(row=i, column=1)
+    usn = cell_obj.value
+    fillLoginpage(usn)                                                              #store and pass current usn to function
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+
 
 
 
