@@ -110,6 +110,9 @@ for i in range(3,sheet.max_column):                                             
     usn = cell_obj.value
     fillLoginpage(usn)                                                              #store and pass current usn to function
     
+                                                                         #import openpyxl
+                                                                         #from openpyxl import load_workbook,cell 
+    
     
 
 
