@@ -22,9 +22,9 @@ option.add_experimental_option("detach",True)
 #add your chrome driver installation path
 browser = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\chromedriver.exe', options=option)
 
-def fillLoginpage(usn):
+def fillLoginpage(usn,ite):
 
-    browser.get("https://results.vtu.ac.in/FMEcbcs22/resultpage.php")
+    browser.get(r"https://results.vtu.ac.in/FMEcbcs22/resultpage.php")
 
     #getting hold of usn and captcha input fields.
 
@@ -59,7 +59,7 @@ def fillLoginpage(usn):
     print("Captcha printing " +captcha)
     print(len(captcha)-1)
     if(len(captcha)-1 != 6 ):
-        fillLoginpage(usn)
+        return -1
 
     #finally input the result pages with required info.
     time.sleep(1)
@@ -67,12 +67,14 @@ def fillLoginpage(usn):
         testbox.send_keys(usn)
         captchabox.send_keys(captcha) 
     except:
-        error
+        return -1
     try:
         print(browser.current_url)
     except:
-        fillLoginpage(usn)
+        return -1
     
+    
+    time.sleep(2)
     sub_codes = ["18ME751", "18CS71", "18CS72","18CS744","18CS734","18CSL76","18CSP77"]
     rows = []
 
@@ -93,26 +95,111 @@ def fillLoginpage(usn):
     
     final_result_data = pd.DataFrame(rows)                              #import pandas as pd
     final_result_data.to_excel(r'vtu_result.xlsx',index=False)
+
+
+    filepath=r"C:\Users\harsh\Desktop\result_analysis\pics\vtu_result.xlsx"
+    wb=load_workbook(filepath)
+    sheet=wb.active
+    energy_i = sheet["C2"]
+    energy_e = sheet["D2"]
+    energy_t = sheet["E2"]
+
+    ai_i = sheet["C3"]
+    ai_e = sheet["D3"]
+    ai_t = sheet["E3"]
+
+    big_i = sheet["C4"]
+    big_e = sheet["D4"]
+    big_t = sheet["E4"]
+
+    crypto_i = sheet["C5"]
+    crypto_e = sheet["D5"]
+    crypto_t = sheet["E5"]
+
+    uid_i = sheet["C6"]
+    uid_e = sheet["D6"]
+    uid_t = sheet["E6"]
+    
+    ailab_i = sheet["C7"]
+    ailab_e = sheet["D7"]
+    ailab_t = sheet["E7"]
+
+    project_i = sheet["C8"]
+    project_e = sheet["D8"]
+    project_t = sheet["E8"]
+
+    workbook = load_workbook(r"C:\Users\harsh\Desktop\result_analysis\pics\student_marks_list.xlsx")
+    sheet1 = workbook.active
+    sheet1["B" + str(ite)] = energy_i.value
+    sheet1["C" + str(ite)] = energy_e.value
+    sheet1["D" + str(ite)] = energy_t.value
+
+    sheet1["E" + str(ite)] = ai_i.value
+    sheet1["F" + str(ite)] = ai_e.value
+    sheet1["G" + str(ite)] = ai_t.value
+
+    sheet1["H" + str(ite)] = big_i.value
+    sheet1["I" + str(ite)] = big_e.value
+    sheet1["J" + str(ite)] = big_t.value
+
+    sheet1["K" + str(ite)] = crypto_i.value
+    sheet1["L" + str(ite)] = crypto_e.value
+    sheet1["M" + str(ite)] = crypto_t.value
+
+    sheet1["N" + str(ite)] = uid_i.value
+    sheet1["O" + str(ite)] = uid_e.value
+    sheet1["P" + str(ite)] = uid_t.value
+
+    sheet1["Q" + str(ite)] = ailab_i.value
+    sheet1["R" + str(ite)] = ailab_e.value
+    sheet1["S" + str(ite)] = ailab_t.value
+
+    sheet1["T" + str(ite)] = project_i.value
+    sheet1["U" + str(ite)] = project_e.value
+    sheet1["V" + str(ite)] = project_t.value
+    
+
+    workbook.save(r"C:\Users\harsh\Desktop\result_analysis\pics\student_marks_list.xlsx")
+
+    time.sleep(5)
+    return ite
     
     
-    time.sleep(10)
-    browser.quit()      # test
-    return              #test
+
+filepath=r"C:\Users\harsh\Desktop\result_analysis\pics\student_marks_list.xlsx"
+wb=load_workbook(filepath)
+sheet=wb.active
+
+def main():
+    ite=3
+    print("START")
+    while ite <= sheet.max_column:
+        cell_obj = sheet.cell(row=ite, column=1)
+        usn = cell_obj.value
+        x = fillLoginpage(usn, ite)
+        print("IN MAIN FUNC") #for testing
+        print(ite) #for testing
+        if(x == ite):
+            print(x)
+        elif(x == -1):
+            print(x)
+            continue
+        ite = ite+1
+
+    
+if __name__ == "__main__":
+    main()
+
+
+
+    
     
 
 
-filepath=r"C:\Users\harsh\Desktop\result_analysis\pics\student_marks_list.xlsx"    #excel path
-wb=load_workbook(filepath)                                                         # load into wb
-sheet=wb.active                                                                    # active workbook
 
-for i in range(3,sheet.max_column):                                                # according to excel, row 1 starts at 3 and column 1 is usn.
-    cell_obj = sheet.cell(row=i, column=1)
-    usn = cell_obj.value
-    fillLoginpage(usn)                                                              #store and pass current usn to function
-    
-                                                                         #import openpyxl
-                                                                         #from openpyxl import load_workbook,cell 
-    
+
+
+
     
 
 
