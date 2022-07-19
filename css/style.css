@@ -34,7 +34,6 @@ li {
 }
 .nav-links a {
  color: #40E1F9;
- text-align: right;
 }
 .logo {
  font-size: 30px;
@@ -62,8 +61,10 @@ li {
  text-align:right;
 }
 .menu li a{
+  font-family: 'Bebas Neue', cursive;
   color: orange;
   font-size: 20px;
+  letter-spacing: 3px;
 }
 .menu li a:hover{
   color: black;
@@ -96,8 +97,9 @@ li {
 }
 .s2d2 a{
   color:orange;
-  font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 3px;
 }
 .material-symbols-outlined {
   color: orange;
@@ -118,15 +120,16 @@ li {
 }
 .s3d7 a{
   color:orange;
-  font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 3px;
 }
 .s3d1 p{
-  color: white;
+  color: orange;
   text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  text-shadow: 1px 1px orange;
+  font-size: 50px;
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 3px;
 }
 
 
@@ -151,17 +154,18 @@ li {
   padding: 20px 10px;
   margin: 5px;
   border-radius: 10px;
-  background-color: white;
+  background:linear-gradient(to right,#0b0b45,#02055A,#02055A,#02055A,#0b0b45) ;
 }
 .s3d2d2d2{
   padding: 20px 10px;
   margin: 5px;
   border-radius: 10px;
-  background-color: white;
+  background:linear-gradient(to right,#0b0b45,#02055A,#02055A,#02055A,#0b0b45) ;
 }
 .s3d2d1d1 p{
   text-align: center;
   font-size: 30px;
+  font-family: 'Play', sans-serif;
   color: orange;
   font-weight: bold;
   text-shadow: 1px 1px black;
@@ -169,6 +173,7 @@ li {
 .s3d2d2d2 p{
   text-align: center;
   font-size: 30px;
+  font-family: 'Play', sans-serif;
   color: orange;
   font-weight: bold;
   text-shadow: 1px 1px black;
@@ -188,14 +193,15 @@ li {
   flex: 100%;
   max-width: 100%;
   padding: 10px 10px;
-  margin: 80px 400px 0;
+  margin: 30px 400px 0;
   border-radius: 10px;
-  background-color: white;
+  background:linear-gradient(to right,#0b0b45,#02055A,#02055A,#02055A,#0b0b45) ;
   border: 5px solid orange;
 }
 .s3d3d1 p{
   color: orange;
   text-align: center;
+  font-family: 'Play', sans-serif;
   font-size: 30px;
   font-weight: bold;
   text-shadow: 1px 1px black;
@@ -213,6 +219,7 @@ li {
 .s3d6d1 p{
   text-align: center;
   font-size: 30px;
+  font-family: 'Play', sans-serif;
   color: orange;
   font-weight: bold;
   text-shadow: 1px 1px black;
@@ -234,12 +241,13 @@ li {
   padding: 5px;
   margin: 10px 400px 0;
   border-radius: 10px;
-  background-color: white;
+  background:linear-gradient(to right,#0b0b45,#02055A,#02055A,#02055A,#0b0b45) ;
   border: 5px solid orange;
 }
 .s3d4d1 p{
   color: orange;
   text-align: center;
+  font-family: 'Play', sans-serif;
   font-size: 30px;
   font-weight: bold;
   text-shadow: 1px 1px black;
@@ -255,6 +263,7 @@ li {
 }
 .s4d1 p{
   text-align: center;
+  font-family: 'Play', sans-serif;
   color: white;
   text-shadow: 0.5px 0.5px orange;
   font-size: 15px;
@@ -274,18 +283,19 @@ li {
    background-size: 200% auto;
    color: black;
    border: 5px outset lightgrey ;
+   font-family: 'Play', sans-serif;
+   font-weight: bold;
+   font-size: 15px;
  }
 
  .btn-grad:hover {
    background-position: right center;
    color: black;
    text-decoration: none;
+   font-weight: bold;
  }
-
-
 
  .cen{
    text-align: center;
    align-items: center;
  }
-
